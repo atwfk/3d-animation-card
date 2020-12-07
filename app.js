@@ -8,6 +8,21 @@ const purchase = document.querySelector(".purchase button");
 const decsreptions = document.querySelector(".info h3");
 const sizes = document.querySelector(".sizes");
 
+const animatedCard = (
+  titleAnim,
+  sneakerAnimOne,
+  sneakerAnimTwo,
+  decsreptionsAnim,
+  sizesAnim,
+  purchasAnime
+) => {
+  title.style.transform = `translateZ(${titleAnim}px)`;
+  sneaker.style.transform = `translateZ(${sneakerAnimOne}px) rotateZ(${sneakerAnimTwo}deg)`;
+  decsreptions.style.transform = `translateZ(${decsreptionsAnim}px)`;
+  sizes.style.transform = `translateZ(${sizesAnim}px)`;
+  purchase.style.transform = `translateZ(${purchasAnime}px)`;
+};
+
 //Moving Animation Event
 container.addEventListener("mousemove", (e) => {
   let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
@@ -15,23 +30,15 @@ container.addEventListener("mousemove", (e) => {
   card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
 });
 //Animate IN
-container.addEventListener("mouseenter", (e) => {
+container.addEventListener("mouseenter", () => {
   card.style.transition = "none";
   //Popout
-  title.style.transform = "translateZ(150px)";
-  sneaker.style.transform = "translateZ(200px) rotateZ(-25deg)";
-  decsreptions.style.transform = "translateZ(125px)";
-  sizes.style.transform = "translateZ(100px)";
-  purchase.style.transform = "translateZ(75px)";
+  animatedCard(150, 200, -25, 125, 100, 75);
 });
 //Animate OUT
-container.addEventListener("mouseleave", (e) => {
+container.addEventListener("mouseleave", () => {
   card.style.transition = "all 0.5s ease";
   card.style.transform = `rotateY(0deg) rotateX(0deg)`;
   //Popback
-  title.style.transform = "translateZ(0)";
-  sneaker.style.transform = "translateZ(0) rotateZ(0deg)";
-  decsreptions.style.transform = "translateZ(0)";
-  sizes.style.transform = "translateZ(0)";
-  purchase.style.transform = "translateZ(0)";
+  animatedCard(0, 0, 0, 0, 0, 0);
 });
